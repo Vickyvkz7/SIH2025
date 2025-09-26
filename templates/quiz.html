@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="quiz-container">
+  <h1>🎯 Career Interest Quiz</h1>
+  <p>Answer honestly to find out your ideal career path.</p>
+
+  <form method="POST">
+    <ol>
+      <li>
+        <label>Which subject do you like most?</label>
+        <select name="q1">
+          <option value="math">Mathematics</option>
+          <option value="biology">Biology</option>
+          <option value="drawing">Arts</option>
+          <option value="business">Business</option>
+          <option value="reading">Literature</option>
+        </select>
+      </li>
+
+      <li>
+        <label>What skill describes you best?</label>
+        <select name="q2">
+          <option value="coding">Logical / Coding</option>
+          <option value="health">Caring for others</option>
+          <option value="creative">Creativity</option>
+          <option value="leadership">Leadership</option>
+          <option value="research">Research / Curiosity</option>
+        </select>
+      </li>
+
+      <li>
+        <label>What motivates you most?</label>
+        <select name="q3">
+          <option value="problem">Solving problems</option>
+          <option value="helping">Helping people</option>
+          <option value="design">Designing/Creating</option>
+          <option value="money">Financial success</option>
+          <option value="teaching">Sharing knowledge</option>
+        </select>
+      </li>
+
+      <!-- Repeat pattern for Q4–Q10 -->
+      <li>
+        <label>Preferred environment?</label>
+        <select name="q4">
+          <option value="coding">Labs/Computers</option>
+          <option value="health">Hospitals</option>
+          <option value="design">Studios</option>
+          <option value="business">Offices</option>
+          <option value="teaching">Classrooms</option>
+        </select>
+      </li>
+
+      <li>
+        <label>Future ambition?</label>
+        <select name="q5">
+          <option value="innovation">Innovation</option>
+          <option value="health">Cure diseases</option>
+          <option value="creative">Create art</option>
+          <option value="leadership">Lead a company</option>
+          <option value="research">Publish research</option>
+        </select>
+      </li>
+
+      <!-- Add more up to Q10 similarly -->
+      <li>
+        <label>Do you enjoy teamwork or working alone?</label>
+        <select name="q6">
+          <option value="team">Teamwork</option>
+          <option value="alone">Independently</option>
+        </select>
+      </li>
+
+      <li>
+        <label>Which club would you join?</label>
+        <select name="q7">
+          <option value="coding">Robotics/Programming</option>
+          <option value="biology">Science/Medical</option>
+          <option value="drawing">Art/Drama</option>
+          <option value="business">Entrepreneurship</option>
+          <option value="reading">Book Club</option>
+        </select>
+      </li>
+
+      <li>
+        <label>Which tool excites you most?</label>
+        <select name="q8">
+          <option value="math">Calculator/Computer</option>
+          <option value="health">Stethoscope</option>
+          <option value="creative">Paintbrush/Camera</option>
+          <option value="money">Stock Charts</option>
+          <option value="research">Microscope</option>
+        </select>
+      </li>
+
+      <li>
+        <label>What would you like to be known for?</label>
+        <select name="q9">
+          <option value="innovation">Inventing something</option>
+          <option value="helping">Saving lives</option>
+          <option value="design">Creating masterpieces</option>
+          <option value="leadership">Leading change</option>
+          <option value="teaching">Inspiring students</option>
+        </select>
+      </li>
+
+      <li>
+        <label>Pick your dream project:</label>
+        <select name="q10">
+          <option value="coding">Build an app</option>
+          <option value="health">Discover a cure</option>
+          <option value="creative">Direct a movie</option>
+          <option value="business">Start a company</option>
+          <option value="research">Write a book</option>
+        </select>
+      </li>
+    </ol>
+
+    <button type="submit" class="btn btn-primary">Submit Quiz</button>
+  </form>
+</div>
+{% endblock %}

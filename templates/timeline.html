@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Career Timeline{% endblock %}
+
+{% block content %}
+<div class="timeline-container">
+    <h1 class="timeline-heading">Your Career Journey 🚀</h1>
+    <p class="timeline-subtitle">Follow these steps to stay on track with your goals</p>
+
+    <div class="timeline">
+        {% for step in steps %}
+        <div class="timeline-step {% if loop.index == current_step %}active{% elif loop.index < current_step %}completed{% endif %}">
+            <div class="timeline-icon">
+                {% if "Quiz" in step.name %}
+                  <i class="fa-solid fa-question-circle"></i>
+                {% elif "Exam" in step.name %}
+                  <i class="fa-solid fa-book"></i>
+                {% elif "Applications" in step.name %}
+                  <i class="fa-solid fa-file-signature"></i>
+                {% elif "Profile" in step.name %}
+                  <i class="fa-solid fa-user"></i>
+                {% else %}
+                  <i class="fa-solid fa-graduation-cap"></i>
+                {% endif %}
+            </div>
+            <div class="timeline-content">
+                <h3>Step {{ loop.index }}: {{ step.name }}</h3>
+                <p>{{ step.description }}</p>
+                <a href="{{ step.link }}" class="timeline-btn">Go to Step</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

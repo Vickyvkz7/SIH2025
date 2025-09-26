@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="content-wrapper">
+  <h2>📘 Course Guidance for Parents</h2>
+  <p class="intro-text">
+    Explore subject-wise opportunities and outcomes after 10th & 12th.  
+    Use the tabs below to navigate easily.
+  </p>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="after10">📗 After 10th</button>
+    <button class="tab-btn" data-tab="after12">📕 After 12th</button>
+    <button class="tab-btn" data-tab="outcomes">🎯 Career Outcomes</button>
+  </div>
+
+  <!-- Tab Content -->
+  <div id="after10" class="tab-content active">
+    <h3 class="section-title">📗 Courses After 10th</h3>
+    <div class="course-grid">
+      {% for course in courses_after_10th %}
+      <div class="course-card" data-stream="{{ course.stream }}">
+        {% if course.stream == "Science" %}
+          <h4>🔬 {{ course.stream }}</h4>
+        {% elif course.stream == "Commerce" %}
+          <h4>💼 {{ course.stream }}</h4>
+        {% elif course.stream == "Arts/Humanities" %}
+          <h4>🎨 {{ course.stream }}</h4>
+        {% elif course.stream == "Diploma/Polytechnic" %}
+          <h4>🛠️ {{ course.stream }}</h4>
+        {% elif course.stream == "Vocational Courses" %}
+          <h4>📚 {{ course.stream }}</h4>
+        {% elif course.stream == "ITI (Industrial Training)" %}
+          <h4>⚙️ {{ course.stream }}</h4>
+        {% else %}
+          <h4>{{ course.stream }}</h4>
+        {% endif %}
+        <p><strong>Subjects:</strong> {{ course.subjects }}</p>
+        <p><strong>Opportunities:</strong> {{ course.opportunities }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="after12" class="tab-content">
+    <h3 class="section-title">📕 Courses After 12th</h3>
+    <div class="course-grid">
+      {% for course in courses_after_12th %}
+      <div class="course-card">
+        <h4>🎓 {{ course.stream }}</h4>
+        <p><strong>Subjects:</strong> {{ course.subjects }}</p>
+        <p><strong>Opportunities:</strong> {{ course.opportunities }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="outcomes" class="tab-content">
+    <h3 class="section-title">🎯 Career Outcome Mapping</h3>
+    <div class="course-grid">
+      {% for mapping in course_outcomes %}
+      <div class="course-card outcome-card">
+        <h4>🌟 {{ mapping.course }}</h4>
+        <p><strong>Outcomes:</strong> {{ mapping.outcomes }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="note-box">
+      💡 <strong>Tip for Parents:</strong> Encourage your child to align interests with career outcomes 
+      instead of following trends.
+    </div>
+  </div>
+
+  <a href="{{ url_for('parents_dashboard') }}" class="btn-back">⬅ Back to Dashboard</a>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const tabs = document.querySelectorAll(".tab-btn");
+  const contents = document.querySelectorAll(".tab-content");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      // Remove active from all
+      tabs.forEach(t => t.classList.remove("active"));
+      contents.forEach(c => {
+        c.classList.remove("active");
+        c.querySelectorAll(".course-card").forEach(card => {
+          card.classList.remove("show");
+        });
+      });
+
+      // Activate clicked
+      tab.classList.add("active");
+      const activeContent = document.getElementById(tab.dataset.tab);
+      activeContent.classList.add("active");
+
+      // Animate course cards
+      const cards = activeContent.querySelectorAll(".course-card");
+      cards.forEach((card, i) => {
+        setTimeout(() => {
+          card.classList.add("show");
+        }, i * 120);
+      });
+    });
+  });
+
+  // Trigger animation for first tab on load
+  document.querySelectorAll("#after10 .course-card").forEach((card, i) => {
+    setTimeout(() => {
+      card.classList.add("show");
+    }, i * 120);
+  });
+});
+</script>
+{% endblock %}

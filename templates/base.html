@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title if title else "PathFinder — Student Career & College Guide" }}</title>
+  
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector(".nav-links");
+      if (toggle && nav) {
+        toggle.addEventListener("click", () => {
+          nav.classList.toggle("active");
+        });
+      }
+
+      // Page transition
+      const page = document.querySelector(".page-transition");
+      if (page) {
+        setTimeout(() => page.classList.add("active"), 100);
+      }
+
+      // Collapsible info blocks
+      document.querySelectorAll(".info-block h2").forEach(header => {
+        header.addEventListener("click", () => {
+          header.parentElement.classList.toggle("active");
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-box">PF</div>
+      <div class="logo-text">
+        <strong>PathFinder</strong><br>
+        <span>Student Career & College Guide</span>
+      </div>
+    </div>
+
+    <nav>
+      <div class="menu-toggle">☰</div>
+      <div class="nav-links">
+        {% if session.get("user") %}
+          <a href="{{ url_for('dashboard') }}" class="nav-link">Dashboard</a>
+          <a href="{{ url_for('quiz') }}" class="nav-link">Quiz</a>
+          <a href="{{ url_for('colleges') }}" class="nav-link">Colleges</a>
+          <a href="{{ url_for('timeline') }}" class="nav-link">Timeline</a>
+          <a href="{{ url_for('profile') }}" class="nav-link">Profile</a>
+          <a href="{{ url_for('parents_dashboard') }}" class="nav-link">Parents</a>
+          <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
+        {% else %}
+          <a href="{{ url_for('login') }}" class="nav-link">Login</a>
+          <a href="{{ url_for('register') }}" class="nav-link">Register</a>
+          <a href="{{ url_for('parents_dashboard') }}" class="nav-link">Parents👪</a>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page Content -->
+  <main id="page" class="main-content page-transition">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Flash Messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-container">
+        {% for category, message in messages %}
+          <div class="flash flash-{{ category }}" onclick="this.classList.add('hide')">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+      <script>
+        // Auto-hide flash messages after 2.5 seconds
+        setTimeout(() => {
+          document.querySelectorAll('.flash').forEach(f => f.classList.add('hide'));
+        }, 2500);
+      </script>
+    {% endif %}
+  {% endwith %}
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 PathFinder | Empowering Students Towards Success 🌟</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

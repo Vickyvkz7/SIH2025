@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="content-wrapper">
+  <h2>🎓 Scholarship Guidance for Parents</h2>
+  <p class="intro-text">
+    Find scholarships to support your child’s education journey.  
+    Use search and filters to explore merit-based, need-based, state, and central schemes.
+  </p>
+
+  <!-- Search & Filters -->
+  <div class="filter-bar">
+    <input type="text" id="searchBox" placeholder="🔍 Search scholarships...">
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Merit-based">Merit-based</button>
+      <button class="filter-btn" data-filter="Need-based">Need-based</button>
+      <button class="filter-btn" data-filter="Girls">Girls</button>
+      <button class="filter-btn" data-filter="State">State</button>
+      <button class="filter-btn" data-filter="Central">Central</button>
+    </div>
+  </div>
+
+  <!-- Scholarship Cards -->
+  <div class="scholarship-grid">
+    {% for s in scholarships %}
+    <div class="scholarship-card" data-category="{{ s.category }}">
+      <h3>{{ s.name }}</h3>
+      <p><strong>Eligibility:</strong> {{ s.eligibility }}</p>
+      <p><strong>Benefits:</strong> {{ s.benefits }}</p>
+      <span class="tag">{{ s.category }}</span>
+      <a href="{{ s.apply_link }}" target="_blank" class="btn-apply">Apply Now</a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="note-box">
+    💡 <strong>Tip for Parents:</strong> Always keep scanned copies of income, caste, and mark sheets ready while applying.
+  </div>
+
+  <a href="{{ url_for('parents_dashboard') }}" class="btn-back">⬅ Back to Dashboard</a>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const searchBox = document.getElementById("searchBox");
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const cards = document.querySelectorAll(".scholarship-card");
+
+  // Search function
+  searchBox.addEventListener("keyup", () => {
+    const query = searchBox.value.toLowerCase();
+    cards.forEach(card => {
+      card.style.display = card.innerText.toLowerCase().includes(query) ? "block" : "none";
+    });
+  });
+
+  // Filter function
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const filter = btn.dataset.filter;
+
+      cards.forEach(card => {
+        if (filter === "all" || card.dataset.category.includes(filter)) {
+          card.style.display = "block";
+          card.classList.add("show");
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+});
+</script>
+{% endblock %}

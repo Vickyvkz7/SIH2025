@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="chat-container">
+    <!-- Header -->
+    <div class="chat-header">
+        🎓 Career Guidance AI
+    </div>
+
+    <!-- Chat Box -->
+    <div class="chat-box" id="chat-box">
+        <!-- Messages will appear here -->
+    </div>
+
+    <!-- Input Area -->
+    <form id="chat-form" class="chat-input">
+        <input type="text" id="user-input" placeholder="Ask me about careers, colleges, or exams..." required />
+        <button type="submit">Send</button>
+    </form>
+
+    <!-- Typing Indicator -->
+    <div id="typing-indicator" class="typing-indicator" style="display:none;">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+<script>
+document.getElementById("chat-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const input = document.getElementById("user-input");
+    const message = input.value.trim();
+    if (!message) return;
+
+    const chatBox = document.getElementById("chat-box");
+
+    // User message
+    const userMsg = document.createElement("div");
+    userMsg.className = "message user";
+    userMsg.innerHTML = `<span class="avatar">👩‍🎓</span><div class="bubble">${message}</div>`;
+    chatBox.appendChild(userMsg);
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+    input.value = "";
+
+    // Show typing dots
+    const typing = document.getElementById("typing-indicator");
+    typing.style.display = "flex";
+
+    // Send to backend
+    const response = await fetch("/chat/api", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: message }),
+    });
+    const data = await response.json();
+
+    // Hide typing dots
+    typing.style.display = "none";
+
+    // Bot reply
+    const botMsg = document.createElement("div");
+    botMsg.className = "message bot";
+    botMsg.innerHTML = `<span class="avatar">🤖</span><div class="bubble">${data.reply}</div>`;
+    chatBox.appendChild(botMsg);
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+});
+</script>
+{% endblock %}

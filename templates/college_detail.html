@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="college-card-container">
+  <div class="college-card">
+
+    <!-- Header -->
+    <div class="college-card-header">
+      <h1>{{ college.name }}</h1>
+      <p>{{ college.type }} • {{ college.district }}</p>
+    </div>
+
+    <!-- Description -->
+    <p class="college-description">{{ college.description }}</p>
+
+    <!-- Info Grid -->
+    <div class="college-info-grid">
+
+      <div class="info-block">
+        <h2>🎯 Fields of Study</h2>
+        <div class="tags">
+          {% for field in college.fields.split(",") %}
+            <span class="tag">{{ field.strip() }}</span>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h2>📚 Courses Offered</h2>
+        <ul>
+          {% for course in college.courses_offered %}
+            <li>{{ course }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h2>📝 Admission Process</h2>
+        <p>{{ college.admission_process or "Admissions are based on merit and entrance exams." }}</p>
+      </div>
+
+      <div class="info-block">
+        <h2>⚖️ Quota & Reservation</h2>
+        <ul>
+          {% for quota in college.quotas %}
+            <li>{{ quota }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h2>💰 Scholarships</h2>
+        <p>{{ college.scholarships_info or "Scholarships available for merit and reserved categories." }}</p>
+        <ul>
+          {% for s in college.scholarships %}
+            <li>{{ s }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h2>🏢 Facilities</h2>
+        <ul>
+          {% for f in college.facilities %}
+            <li>{{ f }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h2>📞 Contact</h2>
+        <p><strong>Phone:</strong> {{ college.contact }}</p>
+        <p><strong>Email:</strong> {{ college.email }}</p>
+        <p><strong>Address:</strong> {{ college.address }}</p>
+        <a href="{{ college.website }}" target="_blank" class="btn-visit">🌐 Visit Website</a>
+      </div>
+
+      <div class="info-block">
+        <h2>📍 Location Map</h2>
+        <iframe src="{{ maps_url }}" width="100%" height="200" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+
+    </div>
+
+    <!-- Nearby Colleges -->
+    {% if nearby %}
+    <div class="nearby-colleges">
+      <h2>🏫 Nearby Colleges</h2>
+      <div class="nearby-grid">
+        {% for nc in nearby %}
+        <div class="nearby-card">
+          <h3>{{ nc.name }}</h3>
+          <p>{{ nc.type }} • {{ nc.district }}</p>
+          <a href="{{ url_for('college_detail', college_id=nc.id) }}" class="btn-view">View</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Footer -->
+    <div class="college-card-footer">
+      <a href="{{ url_for('colleges') }}" class="btn-back">⬅ Back to Colleges</a>
+      
+      {% if college.id in user.applied_colleges %}
+        <button class="btn-apply disabled" disabled>✅ Already Applied</button>
+      {% else %}
+        <a href="{{ url_for('apply_college', college_id=college.id) }}" class="btn-apply">📩 Apply Now</a>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

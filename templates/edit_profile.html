@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="edit-profile-wrapper">
+  <h2>Edit Your Profile ✏️</h2>
+  <p class="edit-subtitle">Update your details and preferences to get better career guidance</p>
+
+  <form method="POST" enctype="multipart/form-data" class="edit-profile-form">
+
+    <!-- Profile Picture -->
+    <div class="form-group profile-pic-edit">
+      <label>Profile Picture</label>
+      <div class="pic-preview">
+        <img id="preview-img" src="{{ user.profile_pic or 'https://via.placeholder.com/120' }}" alt="Profile Picture">
+      </div>
+      <input type="file" name="profile_pic" accept="image/*" onchange="previewImage(event)">
+    </div>
+
+    <!-- Section: Personal Info -->
+    <div class="form-section">
+      <h3>👤 Personal Information</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" name="name" value="{{ user.name }}">
+        </div>
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input type="number" name="age" value="{{ user.age }}">
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select name="gender">
+            <option value="Male" {% if user.gender == "Male" %}selected{% endif %}>Male</option>
+            <option value="Female" {% if user.gender == "Female" %}selected{% endif %}>Female</option>
+            <option value="Other" {% if user.gender == "Other" %}selected{% endif %}>Other</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Academic Background -->
+    <div class="form-section">
+      <h3>🎓 Academic Background</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="qualification">Qualification</label>
+          <input type="text" name="qualification" value="{{ user.qualification }}">
+        </div>
+        <div class="form-group">
+          <label for="school_background">School Background</label>
+          <input type="text" name="school_background" value="{{ user.school_background }}">
+        </div>
+        <div class="form-group">
+          <label for="marks">Marks / GPA</label>
+          <input type="text" name="marks" value="{{ user.marks }}">
+        </div>
+        <div class="form-group">
+          <label for="subjects">Main Subjects</label>
+          <input type="text" name="subjects" value="{{ user.subjects }}">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Preferences -->
+    <div class="form-section">
+      <h3>📘 Preferences</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="preferred_stream">Preferred Stream</label>
+          <input type="text" name="preferred_stream" value="{{ user.preferred_stream }}">
+        </div>
+        <div class="form-group">
+          <label for="preferred_courses">Preferred Courses</label>
+          <input type="text" name="preferred_courses" value="{{ user.preferred_courses }}">
+        </div>
+        <div class="form-group">
+          <label for="college">Preferred College</label>
+          <input type="text" name="college" value="{{ user.college }}">
+        </div>
+        <div class="form-group">
+          <label for="nearby_colleges">Nearby Colleges</label>
+          <input type="text" name="nearby_colleges" value="{{ user.nearby_colleges }}">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Career -->
+    <div class="form-section">
+      <h3>💡 Career Aspirations</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="interests">Interests</label>
+          <textarea name="interests">{{ user.interests }}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="skills">Skills</label>
+          <textarea name="skills">{{ user.skills }}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="career_goal">Career Goal</label>
+          <input type="text" name="career_goal" value="{{ user.career_goal }}">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Advisor & Timeline -->
+    <div class="form-section">
+      <h3>📑 Advisor & Timeline</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="guidelines">Advisor’s Guidelines</label>
+          <textarea name="guidelines">{{ user.guidelines }}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="timeline">Important Timeline</label>
+          <textarea name="timeline">{{ user.timeline }}</textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save Button -->
+    <button type="submit" class="btn-save">💾 Save Changes</button>
+
+  </form>
+</div>
+
+<script>
+  function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = function(){
+      document.getElementById('preview-img').src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+</script>
+
+{% endblock %}

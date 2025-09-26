@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+
+  <!-- College Filter Bar -->
+  <form method="get" action="{{ url_for('colleges') }}" class="college-filter-bar">
+      <input type="text" name="search" class="college-search-box" 
+             placeholder="🔍 Search colleges by name..."
+             value="{{ request.args.get('search','') }}">
+
+      <select name="district" class="college-filter-select">
+          <option value="">🏙️ All Districts</option>
+          {% for district_name in all_districts %}
+            <option value="{{ district_name }}" {% if request.args.get('district')==district_name %}selected{% endif %}>
+              {{ district_name }}
+            </option>
+          {% endfor %}
+      </select>
+
+      <select name="type" class="college-filter-select">
+          <option value="">🏫 All Types</option>
+          <option value="Government" {% if request.args.get('type')=="Government" %}selected{% endif %}>Government</option>
+          <option value="Private" {% if request.args.get('type')=="Private" %}selected{% endif %}>Private</option>
+      </select>
+
+      <button type="submit" class="college-btn-filter">Apply Filters</button>
+  </form>
+
+  <!-- Colleges -->
+  {% if colleges %}
+  <div class="college-grid">
+    {% for college in colleges %}
+    <div class="college-card">
+      <div class="card-image">
+        <img src="{{ college.image or url_for('static', filename='default-college.jpg') }}" alt="{{ college.name }}">
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{ college.name }}</h3>
+        <p class="card-meta">{{ college.district }} • {{ college.type }}</p>
+
+        <div class="tags">
+          <span class="tag">{{ college.district }}</span>
+          <span class="tag type">{{ college.type }}</span>
+          {% if college.fields %}
+            {% for field in college.fields.split(',') %}
+              <span class="tag field">{{ field.strip() }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <a href="{{ url_for('college_detail', college_id=college.id) }}" class="btn-view">View Details</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    {% if page > 1 %}
+      <a href="{{ url_for('colleges', page=page-1, search=search, district=district, ctype=ctype) }}" class="page-btn">⬅ Prev</a>
+    {% endif %}
+
+    <span class="page-info">Page {{ page }} of {{ total_pages }}</span>
+
+    {% if page < total_pages %}
+      <a href="{{ url_for('colleges', page=page+1, search=search, district=district, ctype=ctype) }}" class="page-btn">Next ➡</a>
+    {% endif %}
+  </div>
+
+  {% else %}
+  <div class="no-results">
+    <h3>😕 No colleges found</h3>
+    <p>Try adjusting your search or filters.</p>
+  </div>
+  {% endif %}
+
+</div>
+
+{% endblock %}

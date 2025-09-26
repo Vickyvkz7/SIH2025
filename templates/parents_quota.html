@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="quota-hero">
+  <h1>Reservation & Quota Guidance</h1>
+  <p>Understand the different quotas and reservation benefits for your child’s admission process.</p>
+</div>
+
+<main class="container">
+  <section class="info-card">
+    <h2>Why Reservations?</h2>
+    <p>
+      Reservation policies in India ensure equal opportunities for students from different backgrounds.
+      These help promote social justice and provide access to higher education for underrepresented groups.
+    </p>
+  </section>
+
+  <div class="quota-grid">
+    <div class="quota-card sc">
+      <h3>SC / ST Quota</h3>
+      <p>Special reservation for Scheduled Castes and Scheduled Tribes to uplift disadvantaged communities.</p>
+    </div>
+
+    <div class="quota-card obc">
+      <h3>OBC Quota</h3>
+      <p>Reserved seats for Other Backward Classes (non-creamy layer) to ensure fair opportunities.</p>
+    </div>
+
+    <div class="quota-card ews">
+      <h3>EWS Quota</h3>
+      <p>10% reservation for Economically Weaker Sections (General category families with income ≤ ₹8L).</p>
+    </div>
+
+    <div class="quota-card pwd">
+      <h3>PwD Quota</h3>
+      <p>Reservation for Persons with Disabilities to support differently abled students.</p>
+    </div>
+
+    <div class="quota-card defense">
+      <h3>Defence / Ex-Servicemen Quota</h3>
+      <p>Special seats reserved for children of defense personnel and ex-servicemen.</p>
+    </div>
+
+    <div class="quota-card state">
+      <h3>State / Domicile Quota</h3>
+      <p>Reserved seats for students belonging to a particular state or domicile region.</p>
+    </div>
+  </div>
+
+  <section class="info-card highlight">
+    <h2>Documents Required</h2>
+    <ul>
+      <li>Caste / Category Certificate (SC/ST/OBC/EWS)</li>
+      <li>Income Certificate (for OBC/EWS)</li>
+      <li>Domicile Certificate (for State quota)</li>
+      <li>Disability Certificate (for PwD quota)</li>
+      <li>Service Certificate (for Defence quota)</li>
+    </ul>
+  </section>
+
+  <a href="{{ url_for('parents_dashboard') }}" class="btn-back">⬅ Back to Dashboard</a>
+</main>
+
+{% endblock %}

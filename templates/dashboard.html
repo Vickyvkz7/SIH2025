@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard">
+
+    <!-- Hero Section -->
+    <section class="hero mt-4 text-center">
+        <h2>Hi, {{ user.name }} 👋</h2>
+        <h1>Your Future, Your Path 🚀</h1>
+        <p>Take the right steps towards your dream career with confidence & guidance.</p>
+        <div class="hero-actions">
+            <a href="{{ url_for('quiz') }}" class="btn primary">🚀 Start Career Quiz</a>
+            <a href="{{ url_for('colleges') }}" class="btn secondary">🏫 Explore Colleges</a>
+        </div>
+    </section>
+
+    <!-- Dashboard Cards -->
+    <section class="dashboard-grid">
+        <div class="card">
+            <div class="icon">💬</div>
+            <h3>AI Career Chat</h3>
+            <p>Ask our AI guidance bot anything about your career journey.</p>
+            <a href="{{ url_for('chat') }}" class="card-btn">Open Chat →</a>
+        </div>
+
+        <div class="card">
+            <div class="icon">📝</div>
+            <h3>Career Quiz</h3>
+            <p>Discover careers that match your skills & personality.</p>
+            <a href="{{ url_for('quiz') }}" class="card-btn">Take Quiz →</a>
+        </div>
+
+        <div class="card">
+            <div class="icon">📅</div>
+            <h3>Timeline</h3>
+            <p>Track deadlines, exams, and milestones for your goals.</p>
+            <a href="{{ url_for('timeline') }}" class="card-btn">View Timeline →</a>
+        </div>
+
+        <div class="card">
+            <div class="icon">🎓</div>
+            <h3>Colleges</h3>
+            <p>Browse top colleges and find programs that suit you.</p>
+            <a href="{{ url_for('colleges') }}" class="card-btn">Explore Colleges →</a>
+        </div>
+    </section>
+<!-- Recommended Career Path -->
+<section class="recommendation">
+    <h2>🌟 Recommended Career Path for You</h2>
+    {% if user.recommended_field %}
+    <div class="recommend-card">
+        <h3>{{ user.recommended_field }}</h3>
+        <p>
+            Based on your quiz & interests, we suggest exploring
+            <strong>{{ user.recommended_field }}</strong>. 
+            Start by checking recommended colleges and resources.
+        </p>
+        <!-- ✅ Fixed: changed 'recommended_colleges' to 'colleges' -->
+        <a href="{{ url_for('colleges') }}" class="btn primary">View Recommended Colleges →</a>
+    </div>
+    {% else %}
+    <p class="no-recommendation">Take the quiz to get a personalized career recommendation 🎯</p>
+    <a href="{{ url_for('quiz') }}" class="btn primary">Start Quiz →</a>
+    {% endif %}
+</section>
+
+
+    <!-- Stats / Insights -->
+    <section class="insights">
+        <h2>📊 Your Progress</h2>
+        <div class="stats-grid">
+            <div class="stat">
+                <h3>{{ quiz_taken }}</h3>
+                <p>Quizzes Completed</p>
+            </div>
+            <div class="stat">
+                <h3>{{ colleges_saved }}</h3>
+                <p>Colleges Saved</p>
+            </div>
+            <div class="stat">
+                <h3>{{ ai_chats }}</h3>
+                <p>AI Chats</p>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

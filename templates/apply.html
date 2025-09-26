@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="apply-page">
+  <h2>📄 Apply to {{ college_name }}</h2>
+  <p class="subtitle">Fill in your details and apply directly.</p>
+
+  <form method="POST" class="form-card">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" value="{{ user.name }}" readonly>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" value="{{ user_email }}" readonly>
+
+    <label for="college">College</label>
+    <input type="text" id="college" name="college" value="{{ college_name }}" readonly>
+
+    <label for="course">Preferred Course</label>
+    <input type="text" id="course" name="course" value="{{ user.course }}" required>
+
+    <label for="interests">Your Interests</label>
+    <textarea id="interests" name="interests" rows="3">{{ user.interests }}</textarea>
+
+    <button type="submit" class="btn-primary">Submit Application</button>
+  </form>
+</section>
+
+{% endblock %}

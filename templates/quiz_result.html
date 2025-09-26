@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="quiz-result">
+  <h1>✨ Your Career Suggestion</h1>
+  <p>Based on your answers, you should explore:</p>
+  <div class="suggestion-box">
+    <strong>{{ suggestion }}</strong>
+  </div>
+
+  <h3>Category Scores:</h3>
+  <ul>
+    {% for field, score in scores.items() %}
+      <li><b>{{ field }}:</b> {{ score }}</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{{ url_for('quiz') }}" class="btn btn-secondary">🔄 Retake Quiz</a>
+  <a href="{{ url_for('dashboard') }}" class="btn btn-primary">🏠 Back to Dashboard</a>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="occupation-container">
+  <h1 class="title">👔 Occupation Guidance</h1>
+  <p class="subtitle">Explore detailed insights into career options</p>
+
+  <div class="occupation-grid">
+    {% for occ in occupations %}
+    <div class="occupation-card">
+      <h2>{{ occ.name }}</h2>
+      <p class="desc">{{ occ.description }}</p>
+
+      <h3>📚 Study Paths</h3>
+      <ul>{% for p in occ.paths %}<li>{{ p }}</li>{% endfor %}</ul>
+
+      <h3>💼 Careers</h3>
+      <ul>{% for c in occ.careers %}<li>{{ c }}</li>{% endfor %}</ul>
+
+      <p><strong>💰 Salary:</strong> {{ occ.salary }}</p>
+      <p><strong>📈 Future Scope:</strong> {{ occ.future }}</p>
+
+      <h3>🏫 Top Colleges</h3>
+      <ul>{% for clg in occ.colleges %}<li>{{ clg }}</li>{% endfor %}</ul>
+
+      <p class="tips"><strong>🔑 Parent Tip:</strong> {{ occ.tips }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

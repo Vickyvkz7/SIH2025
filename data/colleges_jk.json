@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "name": "University of Kashmir",
+    "district": "Srinagar",
+    "type": "Government",
+    "fields": "Engineering, Arts, Science, Law",
+    "lat": 34.1306,
+    "lng": 74.8369
+  },
+  {
+    "id": 2,
+    "name": "National Institute of Technology (NIT) Srinagar",
+    "district": "Srinagar",
+    "type": "Government",
+    "fields": "Engineering, Technology",
+    "lat": 34.1256,
+    "lng": 74.8374
+  },
+  {
+    "id": 3,
+    "name": "Sher-e-Kashmir University of Agricultural Sciences and Technology",
+    "district": "Baramulla",
+    "type": "Government",
+    "fields": "Agriculture, Veterinary Sciences",
+    "lat": 34.2091,
+    "lng": 74.3624
+  },
+  {
+    "id": 4,
+    "name": "Islamic University of Science and Technology",
+    "district": "Pulwama",
+    "type": "Government",
+    "fields": "Engineering, Arts, Management",
+    "lat": 33.9678,
+    "lng": 75.0151
+  },
+  {
+    "id": 5,
+    "name": "Central University of Kashmir",
+    "district": "Ganderbal",
+    "type": "Government",
+    "fields": "Management, Humanities, Science",
+    "lat": 34.2296,
+    "lng": 74.7791
+  },
+  {
+    "id": 6,
+    "name": "Central University of Jammu",
+    "district": "Samba",
+    "type": "Government",
+    "fields": "Management, Science, Arts",
+    "lat": 32.5615,
+    "lng": 75.1113
+  },
+  {
+    "id": 7,
+    "name": "University of Jammu",
+    "district": "Jammu",
+    "type": "Government",
+    "fields": "Arts, Science, Commerce, Law",
+    "lat": 32.7317,
+    "lng": 74.8646
+  },
+  {
+    "id": 8,
+    "name": "Government Medical College Jammu",
+    "district": "Jammu",
+    "type": "Government",
+    "fields": "Medicine, Surgery, Nursing",
+    "lat": 32.7225,
+    "lng": 74.8575
+  },
+  {
+    "id": 9,
+    "name": "Government Medical College Srinagar",
+    "district": "Srinagar",
+    "type": "Government",
+    "fields": "Medicine, Surgery, Nursing",
+    "lat": 34.0861,
+    "lng": 74.8076
+  },
+  {
+    "id": 10,
+    "name": "Government Degree College Baramulla",
+    "district": "Baramulla",
+    "type": "Government",
+    "fields": "Arts, Science, Commerce",
+    "lat": 34.2052,
+    "lng": 74.3407
+  },
+  {
+    "id": 11,
+    "name": "Government Degree College Anantnag",
+    "district": "Anantnag",
+    "type": "Government",
+    "fields": "Arts, Science, Commerce",
+    "lat": 33.7312,
+    "lng": 75.1482
+  },
+  {
+    "id": 12,
+    "name": "Government Degree College Kupwara",
+    "district": "Kupwara",
+    "type": "Government",
+    "fields": "Arts, Science",
+    "lat": 34.5261,
+    "lng": 74.2483
+  },
+  {
+    "id": 13,
+    "name": "Government Degree College Rajouri",
+    "district": "Rajouri",
+    "type": "Government",
+    "fields": "Arts, Science, Commerce",
+    "lat": 33.3776,
+    "lng": 74.3083
+  },
+  {
+    "id": 14,
+    "name": "Government Degree College Kathua",
+    "district": "Kathua",
+    "type": "Government",
+    "fields": "Arts, Commerce, Science",
+    "lat": 32.3707,
+    "lng": 75.5236
+  },
+  {
+    "id": 15,
+    "name": "Government Degree College Udhampur",
+    "district": "Udhampur",
+    "type": "Government",
+    "fields": "Arts, Commerce, Science",
+    "lat": 32.9302,
+    "lng": 75.1335
+  },
+  {
+    "id": 16,
+    "name": "Government Polytechnic College Jammu",
+    "district": "Jammu",
+    "type": "Government",
+    "fields": "Diploma Engineering",
+    "lat": 32.7325,
+    "lng": 74.8687
+  },
+  {
+    "id": 17,
+    "name": "Model Institute of Engineering and Technology (MIET)",
+    "district": "Jammu",
+    "type": "Private",
+    "fields": "Engineering, Management",
+    "lat": 32.7743,
+    "lng": 74.8605
+  },
+  {
+    "id": 18,
+    "name": "Baba Ghulam Shah Badshah University",
+    "district": "Rajouri",
+    "type": "Government",
+    "fields": "Engineering, Arts, Management",
+    "lat": 33.3771,
+    "lng": 74.3091
+  },
+  {
+    "id": 19,
+    "name": "Government Degree College Poonch",
+    "district": "Poonch",
+    "type": "Government",
+    "fields": "Arts, Commerce, Science",
+    "lat": 33.7674,
+    "lng": 74.0921
+  },
+  {
+    "id": 20,
+    "name": "Government Degree College Doda",
+    "district": "Doda",
+    "type": "Government",
+    "fields": "Arts, Science, Commerce",
+    "lat": 33.1451,
+    "lng": 75.5489
+  }
+]

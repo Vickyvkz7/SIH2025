@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="exam-prep-container">
+  <h2>📚 Entrance Exam Preparation</h2>
+  <p>Track your exam dates, preparation plans, and study resources.</p>
+
+  <div class="exam-list">
+    {% for exam in exams %}
+    <div class="exam-card">
+      <!-- Days Left Badge -->
+      <span class="days-left-badge">⏳ {{ exam.days_left }} days left</span>
+
+      <!-- Exam Info -->
+      <h3>{{ exam.name }}</h3>
+      <p>{{ exam.description }}</p>  
+
+      <!-- Exam Date -->
+      <div class="exam-timeline">
+        <strong>🗓 Exam Date:</strong> {{ exam.date }}
+      </div>
+
+      <!-- Study Plan -->
+      <h4>📅 Study Plan</h4>
+      <p>{{ exam.plan }}</p>
+
+      <!-- Resources -->
+      <h4>🔗 Resources</h4>
+      <ul>
+        {% for res in exam.resources %}
+        <li><a href="{{ res.link }}" target="_blank">{{ res.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="applications-container">
+  <h1>🎓 My College Applications</h1>
+
+  {% if colleges %}
+    <div class="applications-list">
+      {% for college in colleges %}
+        <div class="application-card">
+          <h2>{{ college.name }}</h2>
+          <p>{{ college.type }} • {{ college.district }}</p>
+          <a href="{{ url_for('college_detail', college_id=college.id) }}" class="btn-view">👀 View College</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="no-applications">⚠️ You haven’t applied to any colleges yet.</p>
+    <a href="{{ url_for('colleges') }}" class="btn-primary">📚 Browse Colleges</a>
+  {% endif %}
+</div>
+{% endblock %}

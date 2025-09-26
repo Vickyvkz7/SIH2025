@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard-container">
+  <h1 class="dashboard-title">👨‍👩‍👧 Parents Dashboard</h1>
+  <p class="dashboard-subtitle">Get insights and guidance to support your child’s education journey.</p>
+
+  <div class="card-grid">
+
+    <!-- Course Details -->
+    <div class="card">
+      <h2>📘 Course Details (10th & 12th)</h2>
+      <p>Explore detailed subject-wise options after 10th & 12th for your child.</p>
+      <a href="{{ url_for('parents_courses') }}" class="btn-card">View Courses</a>
+    </div>
+
+    <!-- Scholarship -->
+    <div class="card">
+      <h2>💰 Scholarship Details</h2>
+      <p>Information about state and central scholarships for students.</p>
+      <a href="{{ url_for('parents_scholarships') }}" class="btn-card">Check Scholarships</a>
+    </div>
+
+    <!-- Quota -->
+    <div class="card">
+      <h2>⚖️ Quota & Reservations</h2>
+      <p>Understand reservation policies and quota systems in admissions.</p>
+      <a href="{{ url_for('parents_quotas') }}" class="btn-card">View Quota Info</a>
+    </div>
+
+    <!-- Occupation -->
+    <div class="card">
+      <h2>👔 Occupation Guidance</h2>
+      <p>Explore how different occupations map to study courses.</p>
+        <a href="{{ url_for('parents_occupation') }}" class="btn-card">Explore Occupations</a>
+    </div>
+
+    <!-- Govt Exams -->
+    <div class="card">
+      <h2>📝 Govt Exams</h2>
+      <p>Qualification details for upcoming government job exams.</p>
+      <a href="#" class="btn-card">View Exams</a>
+    </div>
+
+    <!-- Admission Alerts -->
+    <div class="card">
+      <h2>🔔 Admission Alerts</h2>
+      <p>Stay updated with important admission notifications & deadlines.</p>
+      <a href="#" class="btn-card">View Alerts</a>
+    </div>
+
+    <!-- Financial Planning -->
+    <div class="card">
+      <h2>💡 Financial Planning</h2>
+      <p>Plan fees, scholarships, and future financial requirements.</p>
+      <a href="#" class="btn-card">Plan Finances</a>
+    </div>
+
+    <!-- Course Mapping -->
+    <div class="card">
+      <h2>🎯 Course Mapping</h2>
+      <p>Understand how different courses map to future outcomes.</p>
+      <a href="#" class="btn-card">View Mapping</a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

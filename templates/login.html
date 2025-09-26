@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth-wrapper">
+  <h2>Welcome Back 👋</h2>
+  <p class="auth-subtitle">Login to continue your journey with <strong>PathFinder</strong></p>
+
+  <form class="auth-form" method="POST">
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="Enter your email" required>
+    </div>
+
+    <div class="form-group password-group">
+      <label>Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      <i class="bi bi-eye toggle-password" id="togglePassword"></i>
+    </div>
+
+    <button type="submit" class="btn-auth">Login</button>
+  </form>
+
+  <div class="auth-footer">
+    Don’t have an account? <a href="{{ url_for('register') }}">Register here</a>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const togglePassword = document.querySelector("#togglePassword");
+  const passwordInput = document.querySelector("#password");
+
+  togglePassword.addEventListener("click", function () {
+    const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+    passwordInput.setAttribute("type", type);
+    this.classList.toggle("bi-eye");
+    this.classList.toggle("bi-eye-slash");
+  });
+});
+</script>
+{% endblock %}

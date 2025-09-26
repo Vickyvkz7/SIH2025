@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1 class="page-title">🎯 Recommended Colleges</h1>
+
+    {% if colleges %}
+        <div class="college-grid">
+            {% for college in colleges %}
+            <div class="college-card">
+                <div class="card-header">
+                    <h2>{{ college.name }}</h2>
+                    <span class="badge">{{ college.type }}</span>
+                </div>
+                <p class="location">📍 {{ college.district }}</p>
+                <p class="field">🎓 Field: {{ college.fields }}</p>
+
+                <div class="card-actions">
+                    <a href="{{ url_for('college_detail', college_id=college.id) }}" class="btn-view">
+                        View Details →
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-result">⚠️ No colleges found for your recommended field.</p>
+    {% endif %}
+</div>
+{% endblock %}
